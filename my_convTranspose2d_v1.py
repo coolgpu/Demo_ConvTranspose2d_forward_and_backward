@@ -1,6 +1,7 @@
 """
 Online lecture: Basics of PyTorch autograd
-Demonstrate custom implementation #1 of forward and backward propagation of ConvTranspose2d
+Demonstrate custom implementation #2 of ConvTranspose2d, which treats 
+the Transposed Convolution as a new typical convolution
 """
 import torch
 from my_conv2d_v1 import MyConv2d_v1
@@ -19,13 +20,13 @@ def MyConvTranspose2d_v1(Y, in_weight, in_bias=None, convparam=None):
     nImgSamples, nInYCh, nYRows, nYCols = Y.shape
 
     # treat convTranspose2d as a new convolution, in which
-    # newPadding = nKn - 1 - padding
-    # newStride = 1
-    # newY is a new array with a new size of
-    # (nImgSamples, nInYCh, nNewYRows, nNewYCols) with (stride-1) zeros inserted between
-    # adjacent rows (or columns), where
-    # nNewYRows = (nYRows-1)*stride + 1 and nNewYCols = (nYCols-1)*stride + 1
-    # new_in_weight = flip of the original in_weight
+    #    newPadding = nKn - 1 - padding
+    #    newStride = 1
+    #    newY is a new array. It has a new size of (nImgSamples, nInYCh, nNewYRows, nNewYCols) 
+    #       with (stride-1) zeros inserted between adjacent rows (or columns), where
+    #       nNewYRows = (nYRows-1)*stride + 1 and 
+    #       nNewYCols = (nYCols-1)*stride + 1
+    #       new_in_weight = flip of the original in_weight (in both row and col directions)
 
     newPadding = nKnRows - 1 - padding
     nNewYRows = (nYRows - 1) * stride + 1

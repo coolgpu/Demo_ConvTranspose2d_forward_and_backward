@@ -1,6 +1,6 @@
 """
 Online lecture: Basics of PyTorch autograd
-Demonstrate custom implementation #2 of forward and backward propagation of ConvTranspose2d
+Demonstrate custom implementation version #1 of forward and backward propagation of ConvTranspose2d
 """
 import torch
 from torch.autograd import Function
@@ -10,7 +10,7 @@ class MyConvTranspose2d_v2(Function):
     """
     Version #2 of our own custom autograd Functions of MyConvTranspose2d by subclassing
     torch.autograd.Function and overrdie the forward and backward passes
-    Version #2 is based on the Distribution perspective
+    Version #2 is based on the Distribution perspective view
     """
     @staticmethod
     def forward(ctx, Y, in_weight, in_bias=None, convparam=None):
@@ -28,7 +28,7 @@ class MyConvTranspose2d_v2(Function):
 
         # Determine the output shape without considering user specified output size
         # Note that, for non-unit stride in forward Convolution, there are multiple (=STRIDE) different 
-        # ORIGINAL INPUT sizes that lead to the same size of this Y (Y is output from another forward convolution).
+        # ORIGINAL INPUT sizes that lead to the same size of this Y (Y is output from the forward convolution).
         # One of those ORIGINAL INPUT sizes satisfies (OriginalSize+2P-K) % Stride == 0 while the other
         # (STRIDE-1) ORIGINAL INPUT sizes don't.
         # Let's first consider the one that satisfies (OriginalSize+2P-K) % Stride == 0.
@@ -64,8 +64,8 @@ class MyConvTranspose2d_v2(Function):
     def backward(ctx, grad_from_upstream):
         """
         override the backward function. It receives a Tensor containing the gradient of the loss
-        with respect to the output of the custom forward pass, and calculates the gradients of the loss
-        with respect to each of the inputs of the custom forward pass.
+        with respect to the output of the custom forward pass, and calculates the gradients of 
+        the loss with respect to each of the inputs of the custom forward pass.
         """
         print('Performing custom backward of MyConvTranspose2d_v2')
         padding, stride = ctx.parameters
