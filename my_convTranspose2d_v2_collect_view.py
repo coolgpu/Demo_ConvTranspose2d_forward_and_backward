@@ -8,7 +8,7 @@ from my_conv2d_v1 import MyConv2d_v1
 from my_conv2d_v2 import MyConv2d_v2
 
 
-def MyConvTranspose2d_v1(Y, in_weight, in_bias=None, convparam=None):
+def MyConvTranspose2d_v2_Collect(Y, in_weight, in_bias=None, convparam=None):
     # Note: both padding and stride are those used in the original forward Conv2d, ie. from X --> Y
     if convparam is not None:
         padding, stride = convparam

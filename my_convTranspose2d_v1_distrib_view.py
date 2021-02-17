@@ -6,7 +6,7 @@ import torch
 from torch.autograd import Function
 
 
-class MyConvTranspose2d_v2(Function):
+class MyConvTranspose2d_v1_Distrib(Function):
     """
     Version #2 of our own custom autograd Functions of MyConvTranspose2d by subclassing
     torch.autograd.Function and overrdie the forward and backward passes
@@ -67,7 +67,7 @@ class MyConvTranspose2d_v2(Function):
         with respect to the output of the custom forward pass, and calculates the gradients of 
         the loss with respect to each of the inputs of the custom forward pass.
         """
-        print('Performing custom backward of MyConvTranspose2d_v2')
+        print('Performing custom backward of MyConvTranspose2d_v1_Distrib')
         padding, stride = ctx.parameters
         Y, in_weight, in_bias = ctx.saved_tensors
         nInYCh, nOutXCh, nKnRows, nKnCols = in_weight.shape
