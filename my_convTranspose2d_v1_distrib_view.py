@@ -8,9 +8,9 @@ from torch.autograd import Function
 
 class MyConvTranspose2d_v1_Distrib(Function):
     """
-    Version #2 of our own custom autograd Functions of MyConvTranspose2d by subclassing
+    Version #1 of our own custom autograd Functions of MyConvTranspose2d by subclassing
     torch.autograd.Function and overrdie the forward and backward passes
-    Version #2 is based on the Distribution perspective view
+    Version #1 is based on the Distribution perspective view
     """
     @staticmethod
     def forward(ctx, Y, in_weight, in_bias=None, convparam=None):
